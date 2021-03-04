@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:WebApi.Controllers.WeatherForecastController.Get">
+             <summary>
+             Get specified items for weather forecast
+             </summary>
+             /// <remarks>
+             Sample request:
+            
+                 acilea e niste remarci suplimentare
+            
+             </remarks>
+             <returns></returns>
+        </member>
+    </members>
+</doc>
