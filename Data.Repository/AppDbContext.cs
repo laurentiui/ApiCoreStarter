@@ -23,7 +23,8 @@ namespace Data.Repository
                 {
                     Id=1,
                     Username = "admin",
-                    Password = "admin",
+                    //TODO: never ever leave this admin user here. alwyas change this after a deploy
+                    Password = Utilities.Crypt.CreateMD5("admin"),
                     IsAllowed = true
                 }
             );

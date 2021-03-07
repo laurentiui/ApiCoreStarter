@@ -14,4 +14,6 @@
 /Data.Migrations.Postgres/obj/
 /Data.Repository/bin/
 /Data.Repository/obj/
+/Utilities/bin/
+/Utilities/obj/
 /.vs/*
