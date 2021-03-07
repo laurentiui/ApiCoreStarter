@@ -37,7 +37,7 @@ namespace WebApi.Controllers
         ///
         /// </remarks>
         /// <returns></returns>
-        [Produces("application/json-custombylaur")]
+        [Produces("application/json")]
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {

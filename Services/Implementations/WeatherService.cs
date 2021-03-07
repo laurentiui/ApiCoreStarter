@@ -9,6 +9,10 @@ namespace Services.Implementations
 {
     public class WeatherService : IWeatherService
     {
+        public WeatherService()
+        {
+
+        }
         public string GetForDate(DateTime date)
         {
             return "cold";

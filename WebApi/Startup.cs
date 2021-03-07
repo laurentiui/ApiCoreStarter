@@ -8,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Services;
+using Services.Implementations;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,6 +32,8 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddScoped<IWeatherService, WeatherService>();
 
             this.ConfigureSwagger(services);
         }
