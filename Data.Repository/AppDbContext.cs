@@ -15,5 +15,18 @@ namespace Data.Repository
         }
 
         DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasData(
+                new User()
+                {
+                    Id=1,
+                    Username = "admin",
+                    Password = "admin",
+                    IsAllowed = true
+                }
+            );
+        }
     }
 }
