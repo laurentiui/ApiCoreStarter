@@ -6,4 +6,6 @@
 /UnitTests/obj/
 /WebApi/bin/
 /WebApi/obj/
+/IntegrationTests/bin/
+/IntegrationTests/obj/
 /.vs/*

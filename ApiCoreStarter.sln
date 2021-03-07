@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{723A458F-640B-4D38-BBDD-814321064A80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{723A458F-640B-4D38-BBDD-814321064A80}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{E22D5129-FFC0-4499-AD4C-A0DDFB72C9F7}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,9 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{E22D5129-F
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{30736735-EF79-4FC7-A735-BCED92CCB6B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{30736735-EF79-4FC7-A735-BCED92CCB6B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{D445FAE2-B75E-4861-9186-64CA83BCCD99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{D445FAE2-B75E-4861-9186-64CA83BCCD99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{BEBEFA2C-26A6-4785-BEFF-31599ACDD82E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D445FAE2-B75E-4861-9186-64CA83BCCD99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D445FAE2-B75E-4861-9186-64CA83BCCD99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D445FAE2-B75E-4861-9186-64CA83BCCD99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEBEFA2C-26A6-4785-BEFF-31599ACDD82E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEBEFA2C-26A6-4785-BEFF-31599ACDD82E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEBEFA2C-26A6-4785-BEFF-31599ACDD82E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEBEFA2C-26A6-4785-BEFF-31599ACDD82E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
