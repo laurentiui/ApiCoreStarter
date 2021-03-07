@@ -33,7 +33,8 @@ namespace WebApi
         {
             services.AddControllers();
 
-            services.AddScoped<IWeatherService, WeatherService>();
+            services.AddMyServices();
+            //services.AddScoped<IWeatherService, WeatherService>();
 
             this.ConfigureSwagger(services);
         }
