@@ -1,2 +1,9 @@
 /bin/
 /obj/
+/Services/bin/
+/Services/obj/
+/UnitTests/bin/
+/UnitTests/obj/
+/WebApi/bin/
+/WebApi/obj/
+/.vs/*

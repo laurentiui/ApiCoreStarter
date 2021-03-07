@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -45,10 +46,20 @@ namespace WebApi
                     Description = "A simple example ASP.NET Core Web API",
                 });
 
+                /*
+                 * for this to work you have to setup
+                 * <PropertyGroup>
+	              <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	              <NoWarn>$(NoWarn);1591</NoWarn>
+	            </PropertyGroup>
+                * in the .csproj file
+                */
                 // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+
+                //c.DescribeAllEnumsAsStrings();
             });
         }
 
