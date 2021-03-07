@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using WebApi;
 using Xunit;
 
-namespace IntegrationTests
+namespace Tests.IntegrationTests
 {
     public class WeatherTest
         : IClassFixture<WebApplicationFactory<WebApi.Startup>>
