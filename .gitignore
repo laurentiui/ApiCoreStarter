@@ -12,4 +12,6 @@
 /Data.Domain/obj/
 /Data.Migrations.Postgres/bin/
 /Data.Migrations.Postgres/obj/
+/Data.Repository/bin/
+/Data.Repository/obj/
 /.vs/*

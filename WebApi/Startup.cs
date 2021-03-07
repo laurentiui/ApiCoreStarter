@@ -1,7 +1,9 @@
+using Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,12 +33,29 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            ConfigureDatabase(services);
+
+
             services.AddControllers();
 
             services.AddMyServices();
             //services.AddScoped<IWeatherService, WeatherService>();
 
             this.ConfigureSwagger(services);
+        }
+
+        protected virtual void ConfigureDatabase(IServiceCollection services)
+        {
+            services
+                .AddEntityFrameworkNpgsql()
+                .AddDbContext<AppDbContext>(opt =>
+                {
+                    opt.UseNpgsql(Configuration.GetConnectionString("Default"),
+                        o => o.MigrationsAssembly("Data.Migrations.Postgres"));
+                    //opt.EnableSensitiveDataLogging(); // Do not remove from comment - uncomment it for debuging.
+                }
+                    , ServiceLifetime.Transient);
         }
 
         protected void ConfigureSwagger(IServiceCollection services)
