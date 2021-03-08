@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Dto;
 
 namespace WebApi.Controllers
 {
@@ -33,7 +34,7 @@ namespace WebApi.Controllers
         /// /// <remarks>
         /// Sample request:
         ///
-        ///     acilea e niste remarci suplimentare
+        ///     here we add extra documention we want to see in swagger
         ///
         /// </remarks>
         /// <returns></returns>
@@ -59,5 +60,40 @@ namespace WebApi.Controllers
             })
             .ToArray();
         }
+
+        /// <summary>
+        /// Get specified items for weather forecast
+        /// </summary>
+        /// /// <remarks>
+        /// Sample request:
+        ///
+        ///     here we add extra documention we want to see in swagger
+        ///
+        /// </remarks>
+        /// <returns></returns>
+        //[Produces("application/json")]
+        //[HttpPost]
+        //public async Task<Weather> Add([FromBody] WeatherAddDto weatherAddDto)
+        //{
+        //    //var rng = new Random();
+        //    //return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        //    //{
+        //    //    Date = DateTime.Now.AddDays(index),
+        //    //    TemperatureC = rng.Next(-20, 55),
+        //    //    Summary = Summaries[rng.Next(Summaries.Length)]
+        //    //})
+        //    //.ToArray();
+
+        //    return await _weatherService.Insert(weatherAddDto.Day, weatherAddDto.TemperatureCelsius);
+
+        //    //var rng = new Random();
+        //    //return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        //    //{
+        //    //    Date = DateTime.Now.AddDays(index),
+        //    //    TemperatureC = rng.Next(-20, 55),
+        //    //    Summary = _weatherService.GetForDate(DateTime.UtcNow)
+        //    //})
+        //    //.ToArray();
+        //}
     }
 }

@@ -1,4 +1,6 @@
-﻿using Services.Interfaces;
+﻿using Data.Domain.Entity;
+using Data.Repository.Interfaces;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +11,21 @@ namespace Services.Implementations
 {
     public class WeatherService : IWeatherService
     {
-        public WeatherService()
-        {
+        private readonly IWeatherRepository _weatherRepository;
 
+        public WeatherService(IWeatherRepository weatherRepository)
+        {
+            _weatherRepository = weatherRepository;
         }
         public string GetForDate(DateTime date)
         {
             return "cold";
         }
+
+        public async Task<Weather> Insert(DateTime date, int temperatureCelsius)
+        {
+            return await _weatherRepository.Insert(date, temperatureCelsius);
+        }
+
     }
 }

@@ -15,10 +15,6 @@ namespace Services
         {
             services.AddScoped<IWeatherService, WeatherService>();
 
-            //services.AddScoped<IGetSecret, GetSecret>();
-            //services.AddScoped<IKeyVaultCache, KeyVaultCache>();
-            //services.AddScoped<IBlobStorageToken, BlobStorageToken>();
-            //services.AddScoped<IBlobWriter, BlobWriter>();
             return services;
         }
     }

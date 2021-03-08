@@ -39,6 +39,7 @@ namespace WebApi
 
             services.AddControllers();
 
+            services.AddMyRepositories();
             services.AddMyServices();
             //services.AddScoped<IWeatherService, WeatherService>();
 

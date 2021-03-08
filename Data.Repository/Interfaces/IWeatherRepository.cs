@@ -5,12 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Interfaces
+namespace Data.Repository.Interfaces
 {
-    public interface IWeatherService
+    public interface IWeatherRepository
     {
-        string GetForDate(DateTime date);
         Task<Weather> Insert(DateTime date, int temperatureCelsius);
     }
 }
-
