@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -15,22 +16,34 @@ namespace Tests.IntegrationTests
     public class CustomWebApplicationFactory<TStartup>
         : WebApplicationFactory<TStartup> where TStartup : class
     {
+        public static IConfiguration InitConfiguration()
+        {
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+            return config;
+        }
+
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.UseEnvironment("testing");
             builder.ConfigureServices((IServiceCollection services) =>
             {
-                //services.AddDbContext(ConsoleCancelEventArgs )
                 var descriptor = services.SingleOrDefault(
                     d => d.ServiceType ==
                         typeof(DbContextOptions<AppDbContext>));
 
                 services.Remove(descriptor);
 
-                services.AddDbContext<AppDbContext>(options =>
+                var config = InitConfiguration();
+
+                services.AddDbContext<AppDbContext>(opt =>
                 {
-                    options.UseInMemoryDatabase("InMemoryDbForTesting");
-                });
+                    opt.UseNpgsql(config.GetConnectionString("Test"),
+                        o => o.MigrationsAssembly("Data.Migrations.Postgres"));
+                    //opt.EnableSensitiveDataLogging(); // Do not remove from comment - uncomment it for debuging.
+                }
+                    , ServiceLifetime.Transient);
 
                 var sp = services.BuildServiceProvider();
 
@@ -45,7 +58,7 @@ namespace Tests.IntegrationTests
 
                     try
                     {
-                        //TestUtilities.InitializeDbForTests(db);
+                        TestUtilities.InitializeDbForTests(db);
                     }
                     catch (Exception ex)
                     {

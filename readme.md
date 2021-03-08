@@ -16,8 +16,10 @@ What it provides:
    1. **Units Tests**
       1. Use mocks, make as fast as possible, test as much as possible
    3. **Integration Tests**
-      1. Use new db every time a test/test suit is run
-      1. <span style="color:red">**UNDER WORK**</span>
+      1. ~~Use new db every time a test/test suit is run~~
+      1. Use same test db(over time it will become more significant), and just erase redundant data
+         1. by hand
+         2. using *InitializeDbForTests*
    1. 
 1. Simple separation Api / Services / Data
    1. it will become more complicated later :)
