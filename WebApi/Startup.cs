@@ -1,5 +1,6 @@
 using Data.Domain.Mapping;
 using Data.Repository;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Services;
 using Services.Implementations;
@@ -18,6 +20,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace WebApi
@@ -35,6 +38,7 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             ConfigureDatabase(services);
+            ConfigureAuthentification(services);
 
             services.AddControllers();
 
@@ -57,6 +61,24 @@ namespace WebApi
                     //opt.EnableSensitiveDataLogging(); // Do not remove from comment - uncomment it for debuging.
                 }
                     , ServiceLifetime.Transient);
+        }
+
+        protected virtual void ConfigureAuthentification(IServiceCollection services)
+        {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = Configuration["Jwt:Issuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
+                });
         }
 
         protected void ConfigureSwagger(IServiceCollection services)
