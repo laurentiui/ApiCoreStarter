@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebApi.Dto
+namespace Data.Domain.Dto
 {
     public class WeatherAddDto
     {

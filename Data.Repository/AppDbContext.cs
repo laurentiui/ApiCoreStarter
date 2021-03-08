@@ -15,6 +15,7 @@ namespace Data.Repository
         }
 
         DbSet<User> Users { get; set; }
+        DbSet<Weather> Weathers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

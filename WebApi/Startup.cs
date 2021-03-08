@@ -1,3 +1,4 @@
+using Data.Domain.Mapping;
 using Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,6 +42,8 @@ namespace WebApi
 
             services.AddMyRepositories();
             services.AddMyServices();
+
+            services.AddAutoMapper(typeof(MappingProfile));
             //services.AddScoped<IWeatherService, WeatherService>();
 
             this.ConfigureSwagger(services);

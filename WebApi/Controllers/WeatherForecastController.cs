@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Data.Domain.Dto;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.Dto;
 
 namespace WebApi.Controllers
 {
@@ -21,11 +22,13 @@ namespace WebApi.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IWeatherService _weatherService;
+        private readonly IMapper _mapper;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherService weatherService)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherService weatherService, IMapper mapper)
         {
             _logger = logger;
             _weatherService = weatherService;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -71,29 +74,13 @@ namespace WebApi.Controllers
         ///
         /// </remarks>
         /// <returns></returns>
-        //[Produces("application/json")]
-        //[HttpPost]
-        //public async Task<Weather> Add([FromBody] WeatherAddDto weatherAddDto)
-        //{
-        //    //var rng = new Random();
-        //    //return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        //    //{
-        //    //    Date = DateTime.Now.AddDays(index),
-        //    //    TemperatureC = rng.Next(-20, 55),
-        //    //    Summary = Summaries[rng.Next(Summaries.Length)]
-        //    //})
-        //    //.ToArray();
-
-        //    return await _weatherService.Insert(weatherAddDto.Day, weatherAddDto.TemperatureCelsius);
-
-        //    //var rng = new Random();
-        //    //return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        //    //{
-        //    //    Date = DateTime.Now.AddDays(index),
-        //    //    TemperatureC = rng.Next(-20, 55),
-        //    //    Summary = _weatherService.GetForDate(DateTime.UtcNow)
-        //    //})
-        //    //.ToArray();
-        //}
+        [Produces("application/json")]
+        [HttpPost]
+        public async Task<WeatherDto> Add([FromBody] WeatherAddDto weatherAddDto)
+        {
+            var createdWeather = await _weatherService.Insert(weatherAddDto.Day, weatherAddDto.TemperatureCelsius);
+            var returnEntity = _mapper.Map<WeatherDto>(createdWeather);
+            return returnEntity;
+        }
     }
 }
