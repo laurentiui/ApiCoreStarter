@@ -24,7 +24,13 @@ namespace Services.Implementations
 
         public async Task<Weather> Insert(DateTime date, int temperatureCelsius)
         {
-            return await _weatherRepository.Insert(date, temperatureCelsius);
+            var newEntity = new Weather()
+            {
+                Day = date,
+                TemperatureCelsius = temperatureCelsius
+            };
+            newEntity = await _weatherRepository.Insert(newEntity);
+            return newEntity;
         }
 
     }

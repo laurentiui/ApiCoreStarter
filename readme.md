@@ -15,7 +15,6 @@ What it provides:
    1. I explicitly wanted them in separate projects, as they have separate enviroments 
    1. **Units Tests**
       1. Use mocks, make as fast as possible, test as much as possible
-      1. <span style="color:red">**UNDER WORK**</span>
    3. **Integration Tests**
       1. Use new db every time a test/test suit is run
       1. <span style="color:red">**UNDER WORK**</span>

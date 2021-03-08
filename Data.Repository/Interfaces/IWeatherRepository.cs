@@ -9,6 +9,6 @@ namespace Data.Repository.Interfaces
 {
     public interface IWeatherRepository
     {
-        Task<Weather> Insert(DateTime date, int temperatureCelsius);
+        Task<Weather> Insert(Weather newEntity);
     }
 }

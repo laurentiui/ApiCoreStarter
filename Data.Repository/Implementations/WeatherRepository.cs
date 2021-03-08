@@ -17,13 +17,8 @@ namespace Data.Repository.Implementations
         {
             _appDbContext = appDbContext;
         }
-        public async Task<Weather> Insert(DateTime date, int temperatureCelsius)
+        public async Task<Weather> Insert(Weather newEntity)
         {
-            var newEntity = new Weather()
-            {
-                Day = date,
-                TemperatureCelsius = temperatureCelsius
-            };
             _appDbContext.Set<Weather>().Add(newEntity);
             await _appDbContext.SaveChangesAsync().ConfigureAwait(false);
 
