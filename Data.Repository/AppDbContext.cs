@@ -15,7 +15,6 @@ namespace Data.Repository
         }
 
         DbSet<User> Users { get; set; }
-        DbSet<Dfx24b_77_lol> Dfx24b_77_lol { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,15 +36,6 @@ namespace Data.Repository
                 }
             );
 
-            modelBuilder.Entity<Dfx24b_77_lol>().HasData(
-                new Dfx24b_77_lol()
-                {
-                    start = DateTime.UtcNow,
-                    stop = DateTime.UtcNow.Subtract(new TimeSpan(2007, 4, 1)),
-                    key = "hjkhyioghkgjkhgjhg",
-                    value = "KHkuYIUgHguYtgIGiGkjGi"
-                }
-            );
 
             
         }
