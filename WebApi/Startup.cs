@@ -34,9 +34,7 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             ConfigureDatabase(services);
-
 
             services.AddControllers();
 
@@ -44,7 +42,6 @@ namespace WebApi
             services.AddMyServices();
 
             services.AddAutoMapper(typeof(MappingProfile));
-            //services.AddScoped<IWeatherService, WeatherService>();
 
             this.ConfigureSwagger(services);
         }
