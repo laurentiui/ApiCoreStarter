@@ -16,4 +16,5 @@
 /Data.Repository/obj/
 /Utilities/bin/
 /Utilities/obj/
+/WebApi/logs/
 /.vs/*

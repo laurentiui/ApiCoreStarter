@@ -78,6 +78,8 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<WeatherDto> Add([FromBody] WeatherAddDto weatherAddDto)
         {
+            //_logger.LogInformation("here i want to log - just because");
+            //_logger.LogCritical("something CRTITICAL HAPPEND");
             var createdWeather = await _weatherService.Insert(weatherAddDto.Day, weatherAddDto.TemperatureCelsius);
             var returnEntity = _mapper.Map<WeatherDto>(createdWeather);
             return returnEntity;
