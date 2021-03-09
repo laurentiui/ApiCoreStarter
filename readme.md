@@ -20,6 +20,7 @@ What it provides:
       1. Use same test db(over time it will become more significant), and just erase redundant data
          1. by hand
          2. using *InitializeDbForTests*
+   3. After running a new migration on the db, the easiest way to upgrade test db is to *//uncomment this after a new migration has been run on dev* (found in **CustomWebApplicationFactory.cs**)
    1. 
 1. Simple separation Api / Services / Data
    1. it will become more complicated later :)

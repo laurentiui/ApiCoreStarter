@@ -42,6 +42,7 @@ namespace Tests.IntegrationTests
                     opt.UseNpgsql(config.GetConnectionString("Test"),
                         o => o.MigrationsAssembly("Data.Migrations.Postgres"));
                     //opt.EnableSensitiveDataLogging(); // Do not remove from comment - uncomment it for debuging.
+                    //opt.data
                 }
                     , ServiceLifetime.Transient);
 
@@ -54,7 +55,11 @@ namespace Tests.IntegrationTests
                     var logger = scopedServices
                         .GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
 
+                    //uncomment this after a new migration has been run on dev
+                    //db.Database.EnsureDeleted();
+                    
                     db.Database.EnsureCreated();
+                    //db.Database.Migrate();
 
                     try
                     {
