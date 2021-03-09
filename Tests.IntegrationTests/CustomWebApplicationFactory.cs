@@ -63,7 +63,8 @@ namespace Tests.IntegrationTests
 
                     try
                     {
-                        TestUtilities.InitializeDbForTests(db);
+                        //TestUtilities.InitializeDbForTests(db);
+                        TestUtilities.Db.InitializeDbForTests(db);
                     }
                     catch (Exception ex)
                     {

@@ -51,7 +51,7 @@ namespace WebApi.Controllers
             }
             catch (ArgumentException ex)
             {
-                _logger.LogError($"failed log ${userLoginDto.Email}: {ex.Message}");
+                _logger.LogError($"failed login ${userLoginDto.Email}: {ex.Message}");
                 return Unauthorized();
             }
 
@@ -85,7 +85,7 @@ namespace WebApi.Controllers
             }
             catch (ArgumentException ex)
             {
-                _logger.LogError($"failed log ${userRegisterDto.Email}: {ex.Message}");
+                _logger.LogError($"failed register ${userRegisterDto.Email}: {ex.Message}");
                 return BadRequest();
             }
 
@@ -97,6 +97,40 @@ namespace WebApi.Controllers
 
 
             return Ok(registeredUserDto);
+        }
+
+        /// <summary>
+        /// Register
+        /// </summary>
+        /// /// <remarks>
+        /// Sample request:
+        /// -
+        /// </remarks>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [HttpGet("confirm/{confirmToken}")]
+        public async Task<ActionResult<AuthentificatedUserDto>> Confirm([FromRoute] string confirmToken)
+        {
+            Data.Domain.Entity.User user = null;
+
+            try
+            {
+                user = await _userService.ConfirmUserAsync(confirmToken);
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogError($"failed confirm ${confirmToken}: {ex.Message}");
+                return BadRequest();
+            }
+
+            var authentificatedUserDto = new AuthentificatedUserDto()
+            {
+                Username = user.Username,
+                Token = GenerateJSONWebToken(user)
+            };
+
+
+            return Ok(authentificatedUserDto);
         }
 
         private string GenerateJSONWebToken(Data.Domain.Entity.User user)
