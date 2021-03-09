@@ -16,7 +16,6 @@ namespace Tests.UnitTests
 {
     public class WeatherServiceTest
     {
-        //private IWeatherRepository _weatherRepository;
         private IWeatherService _weatherService;
 
         [SetUp]
@@ -41,8 +40,6 @@ namespace Tests.UnitTests
 
             Assert.AreEqual(10, result.TemperatureCelsius);
             Assert.AreEqual("cold", result.Summary);
-
-            //Assert.AreEqual("cold", _weatherService.GetForDate(DateTime.Now));
         }
     }
 

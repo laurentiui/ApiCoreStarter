@@ -14,6 +14,7 @@ namespace Services
         public static IServiceCollection AddMyServices(this IServiceCollection services)
         {
             services.AddScoped<IWeatherService, WeatherService>();
+            services.AddScoped<IUserService, UserService>();
 
             return services;
         }

@@ -15,6 +15,7 @@ namespace Data.Repository
         {
             services.AddScoped<AppDbContext, AppDbContext>();
             services.AddScoped<IWeatherRepository, WeatherRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

@@ -24,6 +24,7 @@ namespace Data.Repository
                 {
                     Id=1,
                     Username = "admin",
+                    Email="admin@apistarter.com",
                     //TODO: never ever leave this admin user here. alwyas change this after a deploy
                     Password = Utilities.Crypt.CreateMD5("admin"),
                     IsAllowed = true
@@ -32,7 +33,8 @@ namespace Data.Repository
                 {
                     Id = 2,
                     Username = "brown-candies",
-                    Password = "1",
+                    Email = "brwon-candies@apistarter.com",
+                    Password = Utilities.Crypt.CreateMD5("1"),
                     IsAllowed = false
                 }
             );
