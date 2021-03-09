@@ -15,13 +15,10 @@ using Xunit;
 namespace Tests.IntegrationTests
 {
     public class WeatherIntegrationTest
-        //: IClassFixture<WebApplicationFactory<WebApi.Startup>>
         : IClassFixture<CustomWebApplicationFactory<WebApi.Startup>>
     {
-        //private readonly WebApplicationFactory<WebApi.Startup> _factory;
         private readonly CustomWebApplicationFactory<WebApi.Startup> _factory;
 
-        //public WeatherIntegrationTest(WebApplicationFactory<WebApi.Startup> factory)
         public WeatherIntegrationTest(CustomWebApplicationFactory<WebApi.Startup> factory)
         {
             _factory = factory;

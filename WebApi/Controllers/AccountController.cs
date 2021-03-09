@@ -39,9 +39,8 @@ namespace WebApi.Controllers
         /// -
         /// </remarks>
         /// <returns></returns>
-        //[Authorize]
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<ActionResult<AuthentificatedUserDto>> Login([FromBody] UserLoginDto userLoginDto)
         {
             Data.Domain.Entity.User user = null;
@@ -50,7 +49,7 @@ namespace WebApi.Controllers
             {
                 user = await _userService.LoginAsync(userLoginDto.Email, userLoginDto.Password);
             }
-            catch(ArgumentException ex)
+            catch (ArgumentException ex)
             {
                 _logger.LogError($"failed log ${userLoginDto.Email}: {ex.Message}");
                 return Unauthorized();
@@ -67,17 +66,16 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Login
+        /// Register
         /// </summary>
         /// /// <remarks>
         /// Sample request:
         /// -
         /// </remarks>
         /// <returns></returns>
-        //[Authorize]
         [AllowAnonymous]
-        [HttpPost]
-        public async Task<ActionResult<AuthentificatedUserDto>> RegisterUser([FromBody] UserRegisterDto userRegisterDto)
+        [HttpPost("register")]
+        public async Task<ActionResult<RegisteredUserDto>> RegisterUser([FromBody] UserRegisterDto userRegisterDto)
         {
             Data.Domain.Entity.User registeredButNotConfirmedUser = null;
 
