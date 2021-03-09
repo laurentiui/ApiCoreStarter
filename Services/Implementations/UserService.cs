@@ -44,10 +44,26 @@ namespace Services.Implementations
                 Username = username,
                 Email = email,
                 Password = password,
-                IsAllowed = false
+                //until confirmation he's not allowed
+                IsAllowed = false,
+                //overkill, i know :)
+                ConfirmToken = Utilities.Crypt.CreateMD5(Guid.NewGuid() + "-" + Guid.NewGuid())
             };
 
             newEntity = await _userRepository.Insert(newEntity);
+
+            return newEntity;
+        }
+        public async Task<User> ConfirmUserAsync(string confirmToken)
+        {
+            var user = _userRepository.GetByConfirmToken(confirmToken);
+            if (user == null)
+                throw new ArgumentException("confirmation token failed");
+
+            user.ConfirmToken = null;
+            user.IsAllowed = true;
+
+            user = await _userRepository.Update(user);
 
             return user;
         }

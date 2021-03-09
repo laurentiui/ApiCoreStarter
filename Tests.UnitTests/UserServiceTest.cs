@@ -53,10 +53,45 @@ namespace Tests.UnitTests
             var ex = Assert.ThrowsAsync<ArgumentException>(() => _userService.RegisterAsync("username", "existing", "testpass"));
             Assert.AreEqual("email already exists", ex.Message);
         }
+        [Test]
+        public async Task Test_RegisterUser_EmailIsNew_ReceiveConfirmToken()
+        {
+            var user = await _userService.RegisterAsync("username", "non-existing", "testpass");
+            Assert.NotNull(user);
+            Assert.NotNull(user.ConfirmToken);
+            Assert.IsFalse(user.IsAllowed);
+        }
+
+        [Test]
+        public async Task Test_ConfirmUser_ConfirmTokenWrong_ThrowsError()
+        {
+            var ex = Assert.ThrowsAsync<ArgumentException>(() => _userService.ConfirmUserAsync("non-existing"));
+            Assert.AreEqual("confirmation token failed", ex.Message);
+        }
+
+        [Test]
+        public async Task Test_ConfirmUser_ConfirmTokenCorect_UserIsRegistered()
+        {
+            var user = await _userService.ConfirmUserAsync("a-sample-token");
+            Assert.NotNull(user);
+            Assert.IsNull(user.ConfirmToken);
+            Assert.IsTrue(user.IsAllowed);
+        }
     }
 
     internal class UserRepositoryMock : IUserRepository
     {
+        public User GetByConfirmToken(string confirmToken)
+        {
+            if (confirmToken == "non-existing")
+                return null;
+
+            return new User()
+            {
+                ConfirmToken = confirmToken,
+                IsAllowed = false
+            };
+        }
         public User GetByEmail(string email)
         {
             var user = new User()
@@ -79,6 +114,10 @@ namespace Tests.UnitTests
         public async Task<User> Insert(User newEntity)
         {
             return newEntity;
+        }
+        public async Task<User> Update(User entity)
+        {
+            return entity;
         }
     }
 }

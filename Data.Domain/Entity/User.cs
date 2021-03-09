@@ -18,5 +18,6 @@ namespace Data.Domain.Entity
         public string Password { get; set; }
         public string Username { get; set; }
         public bool IsAllowed { get; set; }
+        public string ConfirmToken { get; set; }
     }
 }

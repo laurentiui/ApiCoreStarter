@@ -9,7 +9,9 @@ namespace Data.Repository.Interfaces
 {
     public interface IUserRepository
     {
+        User GetByConfirmToken(string confirmToken);
         User GetByEmail(string email);
         Task<User> Insert(User newEntity);
+        Task<User> Update(User entity);
     }
 }

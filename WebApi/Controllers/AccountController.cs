@@ -79,26 +79,26 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<AuthentificatedUserDto>> RegisterUser([FromBody] UserRegisterDto userRegisterDto)
         {
-            Data.Domain.Entity.User user = null;
+            Data.Domain.Entity.User registeredButNotConfirmedUser = null;
 
-            //try
-            //{
-            //    user = await _userService.LoginAsync(userLoginDto.Email, userLoginDto.Password);
-            //}
-            //catch (ArgumentException ex)
-            //{
-            //    _logger.LogError($"failed log ${userLoginDto.Email}: {ex.Message}");
-            //    return Unauthorized();
-            //}
-
-            var authentificatedUserDto = new AuthentificatedUserDto()
+            try
             {
-                Username = user.Username,
-                Token = GenerateJSONWebToken(user)
+                registeredButNotConfirmedUser = await _userService.RegisterAsync(userRegisterDto.Username, userRegisterDto.Email, userRegisterDto.Password);
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogError($"failed log ${userRegisterDto.Email}: {ex.Message}");
+                return BadRequest();
+            }
+
+            var registeredUserDto = new RegisteredUserDto()
+            {
+                Username = registeredButNotConfirmedUser.Username,
+                ConfirmToken = registeredButNotConfirmedUser.ConfirmToken
             };
 
 
-            return Ok(authentificatedUserDto);
+            return Ok(registeredUserDto);
         }
 
         private string GenerateJSONWebToken(Data.Domain.Entity.User user)
