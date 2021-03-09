@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Data.Domain.Dto;
+using Data.Domain.Dto.Weather;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.Interfaces;

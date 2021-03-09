@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Data.Domain.Dto;
+using Data.Domain.Dto.Weather;
 using Data.Domain.Entity;
 using System;
 using System.Collections.Generic;

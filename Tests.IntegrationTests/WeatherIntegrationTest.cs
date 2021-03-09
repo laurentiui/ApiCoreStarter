@@ -1,4 +1,5 @@
 ﻿using Data.Domain.Dto;
+using Data.Domain.Dto.Weather;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using System;

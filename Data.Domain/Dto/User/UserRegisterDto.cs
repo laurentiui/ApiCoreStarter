@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Domain.Dto
+namespace Data.Domain.Dto.User
 {
-    public class RegisteredUserDto
+    public class UserRegisterDto
     {
         public string Username { get; set; }
-        public string ConfirmToken { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

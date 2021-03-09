@@ -1,4 +1,4 @@
-﻿using Data.Domain.Dto;
+﻿using Data.Domain.Dto.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
