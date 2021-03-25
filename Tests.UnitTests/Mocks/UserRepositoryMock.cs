@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Tests.UnitTests.Mocks
 {
-    internal class UserRepositoryMock : IUserRepository
+    public class UserRepositoryMock : BaseRepositoryMock<User>, IUserRepository
     {
         public User GetByConfirmToken(string confirmToken)
         {
@@ -36,26 +36,6 @@ namespace Tests.UnitTests.Mocks
                 default: return user;
             }
             
-        }
-        public async Task<User> Insert(User newEntity)
-        {
-            return newEntity;
-        }
-        public async Task<User> Update(User entity)
-        {
-            return entity;
-        }
-
-        public async Task<User> GetById(int playerId)
-        {
-            return null;
-        }
-        public async Task<IList<User>> ListAll()
-        {
-            return new List<User>();
-        }
-        public async Task Delete(User toRemove)
-        {
         }
 
     }

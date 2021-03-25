@@ -21,19 +21,19 @@ namespace Tests.UnitTests
         }
 
         [Test]
-        public async Task Test_Login_EmailNotExists_ThrowException()
+        public void Test_Login_EmailNotExists_ThrowException()
         {
             var ex = Assert.ThrowsAsync<ArgumentException>(() => _userService.LoginAsync("non-existing", "testpass"));
             Assert.AreEqual("user not not found", ex.Message);
         }
         [Test]
-        public async Task Test_Login_IsPassWrong_ThrowException()
+        public void Test_Login_IsPassWrong_ThrowException()
         {
             var ex = Assert.ThrowsAsync<ArgumentException>(() => _userService.LoginAsync("anything", "testpass-wrong"));
             Assert.AreEqual("pass not not found", ex.Message);
         }
         [Test]
-        public async Task Test_Login_IsNotAllowed_ThrowException()
+        public void Test_Login_IsNotAllowed_ThrowException()
         {
             var ex = Assert.ThrowsAsync<ArgumentException>(() => _userService.LoginAsync("existing-not-allow", "testpass"));
             Assert.AreEqual("user is blocked", ex.Message);
@@ -46,7 +46,7 @@ namespace Tests.UnitTests
         }
 
         [Test]
-        public async Task Test_RegisterUser_EmailExists_ThrowsError()
+        public void Test_RegisterUser_EmailExists_ThrowsError()
         {
             var ex = Assert.ThrowsAsync<ArgumentException>(() => _userService.RegisterAsync("username", "existing", "testpass"));
             Assert.AreEqual("email already exists", ex.Message);
@@ -61,7 +61,7 @@ namespace Tests.UnitTests
         }
 
         [Test]
-        public async Task Test_ConfirmUser_ConfirmTokenWrong_ThrowsError()
+        public void Test_ConfirmUser_ConfirmTokenWrong_ThrowsError()
         {
             var ex = Assert.ThrowsAsync<ArgumentException>(() => _userService.ConfirmUserAsync("non-existing"));
             Assert.AreEqual("confirmation token failed", ex.Message);
