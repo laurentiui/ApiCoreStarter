@@ -11,7 +11,7 @@ namespace Tests.UnitTests.Mocks
     public class BaseRepositoryMock<T> : IBaseRepository<T>
         where T : BaseEntity
     {
-        private List<T> _list;
+        protected List<T> _list;
 
         public BaseRepositoryMock()
         {

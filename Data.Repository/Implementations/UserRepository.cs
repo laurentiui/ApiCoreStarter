@@ -18,14 +18,14 @@ namespace Data.Repository.Implementations
             _appDbContext = appDbContext;
         }
 
-        public User GetByConfirmToken(string confirmToken)
+        public async Task<User> GetByConfirmToken(string confirmToken)
         {
-            var user = _appDbContext.Set<User>().FirstOrDefault(u => u.ConfirmToken == confirmToken);
+            var user = await _appDbContext.Set<User>().FirstOrDefaultAsync(u => u.ConfirmToken == confirmToken);
             return user;
         }
-        public User GetByEmail(string email)
+        public async Task<User> GetByEmail(string email)
         {
-            var user = _appDbContext.Set<User>().FirstOrDefault(u => u.Email.ToLower() == email);
+            var user = await _appDbContext.Set<User>().FirstOrDefaultAsync(u => u.Email.ToLower() == email);
             return user;
         }
     }

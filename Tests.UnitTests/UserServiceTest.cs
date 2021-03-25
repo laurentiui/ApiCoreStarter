@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tests.UnitTests.Mocks;
+using Tests.UnitTests.TestUtilities;
 
 namespace Tests.UnitTests
 {
@@ -16,8 +17,9 @@ namespace Tests.UnitTests
         [SetUp]
         public void Setup()
         {
-            var userRepository = new UserRepositoryMock();
-            _userService = new UserService(userRepository);
+            var injections = new Injections();
+            _userService = injections.userService;
+
         }
 
         [Test]

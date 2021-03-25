@@ -20,7 +20,7 @@ namespace Services.Implementations
 
         public async Task<User> LoginAsync(string email, string password)
         {
-            var user = _userRepository.GetByEmail(email);
+            var user = await _userRepository.GetByEmail(email);
             if (user == null)
                 throw new ArgumentException("user not not found");
 
@@ -35,7 +35,7 @@ namespace Services.Implementations
         }
         public async Task<User> RegisterAsync(string username, string email, string password)
         {
-            var user = _userRepository.GetByEmail(email);
+            var user = await _userRepository.GetByEmail(email);
             if (user != null)
                 throw new ArgumentException("email already exists");
 
@@ -56,7 +56,7 @@ namespace Services.Implementations
         }
         public async Task<User> ConfirmUserAsync(string confirmToken)
         {
-            var user = _userRepository.GetByConfirmToken(confirmToken);
+            var user = await _userRepository.GetByConfirmToken(confirmToken);
             if (user == null)
                 throw new ArgumentException("confirmation token failed");
 

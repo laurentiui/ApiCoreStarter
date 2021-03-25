@@ -9,7 +9,7 @@ namespace Data.Repository.Interfaces
 {
     public interface IUserRepository : IBaseRepository<User>
     {
-        User GetByConfirmToken(string confirmToken);
-        User GetByEmail(string email);
+        Task<User> GetByConfirmToken(string confirmToken);
+        Task<User> GetByEmail(string email);
     }
 }
