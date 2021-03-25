@@ -19,14 +19,14 @@ namespace Tests.IntegrationTests
         public static IConfiguration InitConfiguration()
         {
             var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.test.json")
                 .Build();
             return config;
         }
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            builder.UseEnvironment("testing");
+            builder.UseEnvironment("test");
             builder.ConfigureServices((IServiceCollection services) =>
             {
                 var descriptor = services.SingleOrDefault(
@@ -39,7 +39,7 @@ namespace Tests.IntegrationTests
 
                 services.AddDbContext<AppDbContext>(opt =>
                 {
-                    opt.UseNpgsql(config.GetConnectionString("Test"),
+                    opt.UseNpgsql(config.GetConnectionString("Default"),
                         o => o.MigrationsAssembly("Data.Migrations.Postgres"));
                     //opt.EnableSensitiveDataLogging(); // Do not remove from comment - uncomment it for debuging.
                     //opt.data

@@ -18,12 +18,21 @@ namespace WebApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                //.ConfigureLogging(logging =>
-                //{
-                //    logging.ClearProviders();
-                //    logging.AddConsole();
-                //    //logging.add;
-                //})
+                .ConfigureAppConfiguration((context, config) =>
+                {
+                    if (context.HostingEnvironment.EnvironmentName == "test")
+                    {
+                        config
+                            .AddJsonFile("appsettings.test.json")
+                            .AddEnvironmentVariables();
+                    }
+                    else
+                    {
+                        config
+                            .AddJsonFile("appsettings.json")
+                            .AddEnvironmentVariables();
+                    }
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
