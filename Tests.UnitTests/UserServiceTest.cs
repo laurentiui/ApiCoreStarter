@@ -119,5 +119,18 @@ namespace Tests.UnitTests
         {
             return entity;
         }
+
+        public async Task<User> GetById(int playerId)
+        {
+            return null;
+        }
+        public async Task<IList<User>> ListAll()
+        {
+            return new List<User>();
+        }
+        public async Task Delete(User toRemove)
+        {
+        }
+
     }
 }

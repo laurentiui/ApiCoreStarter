@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace Data.Repository.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IBaseRepository<User>
     {
         User GetByConfirmToken(string confirmToken);
         User GetByEmail(string email);
-        Task<User> Insert(User newEntity);
-        Task<User> Update(User entity);
     }
 }

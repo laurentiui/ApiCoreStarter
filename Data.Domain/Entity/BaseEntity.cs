@@ -8,12 +8,10 @@ using System.Threading.Tasks;
 
 namespace Data.Domain.Entity
 {
-    public class User : BaseEntity
+    public class BaseEntity
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Username { get; set; }
-        public bool IsAllowed { get; set; }
-        public string ConfirmToken { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
     }
 }

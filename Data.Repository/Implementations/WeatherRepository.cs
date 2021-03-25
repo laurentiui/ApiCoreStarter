@@ -9,21 +9,13 @@ using System.Threading.Tasks;
 
 namespace Data.Repository.Implementations
 {
-    public class WeatherRepository : IWeatherRepository
+    public class WeatherRepository : BaseRepository<Weather>, IWeatherRepository
     {
         private readonly AppDbContext _appDbContext;
 
-        public WeatherRepository(AppDbContext appDbContext)
+        public WeatherRepository(AppDbContext appDbContext) : base(appDbContext)
         {
             _appDbContext = appDbContext;
-        }
-        public async Task<Weather> Insert(Weather newEntity)
-        {
-            _appDbContext.Set<Weather>().Add(newEntity);
-            await _appDbContext.SaveChangesAsync().ConfigureAwait(false);
-
-            _appDbContext.Entry(newEntity).State = EntityState.Detached;
-            return newEntity;
         }
     }
 }

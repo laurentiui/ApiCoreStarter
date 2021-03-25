@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repository.Interfaces
 {
-    public interface IWeatherRepository
+    public interface IWeatherRepository : IBaseRepository<Weather>
     {
-        Task<Weather> Insert(Weather newEntity);
     }
 }
